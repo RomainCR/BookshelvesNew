@@ -6,6 +6,7 @@
         <h3 class="list-group-item-heading">
           {{ book.title }}
         </h3>
+        <p class="list-group-item-text">{{ book.created | date: "short" }}</p>
         <img style="max-width:100px; max-height:100px;" *ngIf="book.photo" [src]="book.photo">
         <button class="btn btn-default pull-right" (click)="onDeleteBook(book)">
           <span class="glyphicon glyphicon-minus"></span>
