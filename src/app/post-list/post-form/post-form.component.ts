@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Post } from "../../models/post.model";
 import { Router } from "@angular/router";
 import { PostsService } from "src/app/services/posts.service";
-import * as firebase from "firebase";
 
 @Component({
   selector: "app-post-form",

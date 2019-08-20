@@ -7,7 +7,7 @@
         <p class="list-group-item-text" style="margin-bottom: 20px; font-size:0.8em">{{ post.created | date: "short" }}</p>
         <p style="font-weight: bold;">{{ post.content }}</p>
         <img style="max-width:200px; max-height:200px;" *ngIf="post.photo" [src]="post.photo">
-        <button class="btn btn-default pull-right" (click)="onDeletePost(post)" style="margin: -10px !important;">
+        <button class="btn btn-default pull-right" (click)="onDeletePost(post)">
           Supprimer ce post
         </button>
         <p class="list-group-item-text" style="margin-top:20px; font-style: italic">{{ post.author }}</p>
