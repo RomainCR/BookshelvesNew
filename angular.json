@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bookshelves": {
+    "blogocabbe": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -36,7 +36,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bookshelves",
+            "outputPath": "dist/blogocabbe",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -87,18 +87,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bookshelves:build"
+            "browserTarget": "blogocabbe:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bookshelves:build:production"
+              "browserTarget": "blogocabbe:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bookshelves:build"
+            "browserTarget": "blogocabbe:build"
           }
         },
         "test": {
@@ -135,15 +135,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "bookshelves:serve"
+            "devServerTarget": "blogocabbe:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "bookshelves:serve:production"
+              "devServerTarget": "blogocabbe:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "bookshelves"
+  "defaultProject": "blogocabbe"
 }

@@ -14,7 +14,7 @@ export class AppComponent {
       authDomain: "blogocabbe.firebaseapp.com",
       databaseURL: "https://blogocabbe.firebaseio.com",
       projectId: "blogocabbe",
-      storageBucket: "",
+      storageBucket: "blogocabbe.appspot.com",
       messagingSenderId: "647763192849",
       appId: "1:647763192849:web:1a9cb4201fbdbc6c"
     };

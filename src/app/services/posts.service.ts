@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book } from '../models/book.model'
+import { Post } from '../models/post.model'
 import * as firebase from 'firebase/app';
 import 'firebase/database'
 import 'firebase/storage'
@@ -7,54 +7,40 @@ import DataSnapshot = firebase.database.DataSnapshot;
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
-export class BooksService {
+export class PostsService {
 
-  books: Book[] = [];
-  booksSubject = new Subject<Book[]>();
+  posts: Post[] = [];
+  postSubject = new Subject<Post[]>();
 
   constructor() {
-    this.getBooks();
+    this.getPosts();
   }
 
-  emitBooks() {
-    this.booksSubject.next(this.books);
+  emitPosts() {
+    this.postSubject.next(this.posts);
   }
 
-  saveBooks() {
-    firebase.database().ref('/books').set(this.books);
+  savePosts() {
+    firebase.database().ref('/posts').set(this.posts);
   }
 
-  getBooks() {
-    firebase.database().ref('/books')
+  getPosts() {
+    firebase.database().ref('/posts')
       .on('value', (data) => {
-        this.books = data.val() ? data.val() : [];
-        this.emitBooks();
+        this.posts = data.val() ? data.val() : [];
+        this.emitPosts();
       })
   }
 
-  getSingleBook(id: number) {
-    return new Promise(
-      (resolve, reject) => {
-        firebase.database().ref('/books/' + id).once('value').then(
-          (data: DataSnapshot) => {
-            resolve(data.val());
-          }, (error) => {
-            reject(error);
-          }
-        );
-      }
-    );
+  createNewPost(newPost: Post) {
+    this.posts.push(newPost);
+    this.savePosts();
+    this.emitPosts();
   }
 
-  createNewBook(newBook: Book) {
-    this.books.push(newBook);
-    this.saveBooks();
-    this.emitBooks();
-  }
-
-  removeBook(book: Book) {
-    if (book.photo) {
-      const storageRef = firebase.storage().refFromURL(book.photo);
+  removePost(post: Post) {
+    if (post.photo) {
+      const storageRef = firebase.storage().refFromURL(post.photo);
       storageRef.delete().then(
         () => {
           console.log('Photo removed!');
@@ -64,16 +50,16 @@ export class BooksService {
         }
       );
     }
-    const bookIndexToRemove = this.books.findIndex(
-      (bookEl) => {
-        if (bookEl === book) {
+    const postIndexToRemove = this.posts.findIndex(
+      (postEl) => {
+        if (postEl === post) {
           return true;
         }
       }
     );
-    this.books.splice(bookIndexToRemove, 1);
-    this.saveBooks();
-    this.emitBooks();
+    this.posts.splice(postIndexToRemove, 1);
+    this.savePosts();
+    this.emitPosts();
   }
 
   uploadFile(file: File) {
@@ -97,7 +83,4 @@ export class BooksService {
       }
     );
   }
-
-
-
 }

@@ -1,5 +1,5 @@
 {
-  "name": "bookshelves",
+  "name": "blogocabbe",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -21,6 +21,7 @@
     "@angular/router": "~8.2.0",
     "bootstrap": "^3.4.1",
     "firebase": "^6.3.5",
+    "ng-rn": "^1.0.0",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.2",
     "tslib": "^1.10.0",

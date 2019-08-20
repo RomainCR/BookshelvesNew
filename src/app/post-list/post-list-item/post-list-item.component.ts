@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Book } from '../../models/book.model';
+import { Post } from '../../models/post.model';
 import { Subscription } from 'rxjs';
-import { BooksService } from '../../services/books.service';
 import { Router } from '@angular/router';
+import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
   selector: 'post-list-item',
@@ -11,53 +11,50 @@ import { Router } from '@angular/router';
 })
 export class PostListItemComponent implements OnInit {
 
-  books: Book[];
-  booksSubscription: Subscription
+  posts: Post[];
+  postsSubscription: Subscription
 
   constructor(
-    private booksService: BooksService,
+    private postsService: PostsService,
     private router: Router) { }
 
-
   ngOnInit() {
-    this.booksSubscription = this.booksService.booksSubject.subscribe(
-      (books: Book[]) => {
-        this.books = books;
+    this.postsSubscription = this.postsService.postSubject.subscribe(
+      (posts: Post[]) => {
+        this.posts = posts;
       }
     );
-    this.booksService.emitBooks();
+    this.postsService.emitPosts();
   }
 
   onLove(i) {
-    this.books[i].loveIts += 1;
-    console.log(this.books[i].loveIts);
-    this.booksService.saveBooks();
+    this.posts[i].loveIts += 1;
+    this.postsService.savePosts();
   }
 
   onDont(i) {
-    this.books[i].loveIts -= 1;
-    console.log(this.books[i].loveIts);
-    this.booksService.saveBooks();
+    this.posts[i].loveIts -= 1;
+    this.postsService.savePosts();
   }
 
   getColor(i) {
-    if (this.books[i].loveIts > 0) {
-      return "green";
-    } else if (this.books[i].loveIts < 0) {
-      return "red";
+    if (this.posts[i].loveIts > 0) {
+      return "#5CB85C";
+    } else if (this.posts[i].loveIts < 0) {
+      return "#D9534F";
     }
   }
 
-  onDeleteBook(book: Book) {
-    this.booksService.removeBook(book);
+  onDeletePost(post: Post) {
+    this.postsService.removePost(post);
   }
 
-  onViewBook(id: number) {
-    this.router.navigate(['/books', 'view', id]);
+  onViewPost(id: number) {
+    this.router.navigate(['/posts', 'view', id]);
   }
 
   ngOnDestroy() {
-    this.booksSubscription.unsubscribe();
+    this.postsSubscription.unsubscribe();
   }
 
 }

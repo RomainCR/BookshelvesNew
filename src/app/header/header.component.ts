@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service'
 export class HeaderComponent implements OnInit {
 
   isAuth: boolean;
+  userName: string;
 
   constructor(private authService: AuthService) { }
 
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
     firebase.auth().onAuthStateChanged(
       (user) => {
         if(user) {
-          this.isAuth = true; 
+          this.isAuth = true;
+          this.userName = user.email;
         } else {
           this.isAuth = false;
         }

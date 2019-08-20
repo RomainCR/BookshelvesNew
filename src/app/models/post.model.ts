@@ -1,8 +1,8 @@
-export class Book {
+export class Post {
   photo: string;
-  synopsis?: string;
   loveIts: number = 0;
-  created: string = new Date().toString()
+  created: string = new Date().toString();
+  content: string;
   constructor(public title: string, public author: string) {
     
   }

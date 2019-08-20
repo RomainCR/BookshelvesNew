@@ -13,8 +13,8 @@ export class PostListComponent implements OnInit {
   ngOnInit() {
   }
 
-  onNewBook() {
-    this.router.navigate(['/books', 'new']);
+  onNewPost() {
+    this.router.navigate(['/posts', 'new']);
   }
 
 }
