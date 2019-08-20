@@ -6,19 +6,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
-import { BookListComponent } from './book-list/book-list.component';
-import { SingleBookComponent } from './book-list/single-book/single-book.component';
-import { BookFormComponent } from './book-list/book-form/book-form.component';
+import { PostListItemComponent } from './post-list/post-list-item/post-list-item.component';
+import { SingleBookComponent } from './post-list/post-list-item/single-book/single-book.component';
+import { BookFormComponent } from './post-list/post-list-item/book-form/book-form.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { BooksService } from './services/books.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PostListComponent } from './post-list/post-list.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'auth/signin', component: SigninComponent },
-  { path: 'books', canActivate:[AuthGuardService], component: BookListComponent },
+  { path: 'books', canActivate:[AuthGuardService], component: PostListComponent },
   { path: 'books/new', canActivate:[AuthGuardService], component: BookFormComponent },
   { path: 'books/view/:id', canActivate:[AuthGuardService], component: SingleBookComponent },
   { path: '', redirectTo: 'books', pathMatch: 'full' },
@@ -30,10 +31,11 @@ const appRoutes: Routes = [
     AppComponent,
     SignupComponent,
     SigninComponent,
-    BookListComponent,
+    PostListItemComponent,
     SingleBookComponent,
     BookFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,

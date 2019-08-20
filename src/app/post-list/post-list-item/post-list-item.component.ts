@@ -1,15 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Book } from '../models/book.model';
+import { Book } from '../../models/book.model';
 import { Subscription } from 'rxjs';
-import { BooksService } from '../services/books.service';
+import { BooksService } from '../../services/books.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-book-list',
-  templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.scss']
+  selector: 'post-list-item',
+  templateUrl: './post-list-item.component.html',
+  styleUrls: ['./post-list-item.component.scss']
 })
-export class BookListComponent implements OnInit {
+export class PostListItemComponent implements OnInit {
 
   books: Book[];
   booksSubscription: Subscription
@@ -46,10 +46,6 @@ export class BookListComponent implements OnInit {
     } else if (this.books[i].loveIts < 0) {
       return "red";
     }
-  }
-
-  onNewBook() {
-    this.router.navigate(['/books', 'new']);
   }
 
   onDeleteBook(book: Book) {
