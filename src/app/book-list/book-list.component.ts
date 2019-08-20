@@ -28,6 +28,26 @@ export class BookListComponent implements OnInit {
     this.booksService.emitBooks();
   }
 
+  onLove(i) {
+    this.books[i].loveIts += 1;
+    console.log(this.books[i].loveIts);
+    this.booksService.saveBooks();
+  }
+
+  onDont(i) {
+    this.books[i].loveIts -= 1;
+    console.log(this.books[i].loveIts);
+    this.booksService.saveBooks();
+  }
+
+  getColor(i) {
+    if (this.books[i].loveIts > 0) {
+      return "green";
+    } else if (this.books[i].loveIts < 0) {
+      return "red";
+    }
+  }
+
   onNewBook() {
     this.router.navigate(['/books', 'new']);
   }
