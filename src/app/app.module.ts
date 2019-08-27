@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { RestComponent } from './rest/rest.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { PostFormComponent } from './post-list/post-form/post-form.component';
@@ -18,6 +19,7 @@ import { PostListComponent } from './post-list/post-list.component';
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'auth/signin', component: SigninComponent },
+  { path: 'rest', component: RestComponent },
   { path: 'posts', canActivate:[AuthGuardService], component: PostListComponent },
   { path: 'post/new', canActivate:[AuthGuardService], component: PostFormComponent, pathMatch: 'full' },
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     PostListItemComponent,
     PostFormComponent,
     HeaderComponent,
-    PostListComponent
+    PostListComponent,
+    RestComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     AuthGuardService,
-    PostsService
+    PostsService,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

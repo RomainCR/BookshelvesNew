@@ -1,0 +1,6 @@
+<div class="list-group" *ngFor="let post of posts; let i = index">
+  <ul>
+    <li>{{ post.title }}</li>
+  </ul>
+  <button class="btn btn-primary" (click)="onDelete(i)">X</button>
+</div>
