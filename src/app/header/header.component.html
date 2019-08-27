@@ -5,11 +5,12 @@
           <a routerLink="posts">Posts</a>
         </li>
         <li routerLinkActive="active">
-          <a routerLink="posts/new">Nouveau post</a>
+          <a routerLink="post/new">Nouveau post</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li style="margin:15px;">{{ userName }}</li>
+        <!-- <li style="margin:15px;">{{ ticks }}</li> -->
+        <li style="margin:15px;">{{ showWord() }} {{ userName }}</li>
         <li routerLinkActive="active" *ngIf="!isAuth">
           <a routerLink="auth/signup">Créer un compte</a>
         </li>

@@ -14,7 +14,7 @@ export class PostListComponent implements OnInit {
   }
 
   onNewPost() {
-    this.router.navigate(['/posts', 'new']);
+    this.router.navigate(['/post', 'new']);
   }
 
 }
