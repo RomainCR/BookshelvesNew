@@ -6,7 +6,7 @@ export class AuthService {
 
   constructor() { }
 
-  createNewUser(email: string, password: string) {
+  createNewUser(email: string, displayName: string, password: string) {
     return new Promise(
       (resolve, reject) => {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(

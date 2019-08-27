@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Post } from "../../models/post.model";
 import { Router } from "@angular/router";
 import { PostsService } from "src/app/services/posts.service";
+import { AuthService } from 'src/app/services/auth.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: "app-post-form",
@@ -14,29 +16,38 @@ export class PostFormComponent implements OnInit {
   fileIsUploading = false;
   fileUrl: string;
   fileUploaded = false;
-  currentUser: string = "";
+  userName: any="plouk";
 
   constructor(
     private formBuilder: FormBuilder,
     private postsService: PostsService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.initForm();
+    firebase.auth().onAuthStateChanged(
+      (user) => {
+        if(user) {
+          this.userName = user.email.charAt(0).toUpperCase() + user.email.substring(1).toLowerCase().split('@')[0];
+        } else {
+          this.userName = 'Nope';
+        }
+      }
+    );
   }
 
   initForm() {
     this.postForm = this.formBuilder.group({
       title: ["", Validators.required],
-      author: ["", Validators.required],
       content: ["", Validators.required]
     });
   }
 
   onSavePost() {
     const title = this.postForm.get("title").value;
-    const author = this.postForm.get("author").value;
+    const author = this.userName;
     const content = this.postForm.get("content").value;
     const newPost = new Post(title, author);
     newPost.content = content;

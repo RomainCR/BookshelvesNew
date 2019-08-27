@@ -28,13 +28,11 @@ export class PostListItemComponent implements OnInit {
   }
 
   onLove(i) {
-    this.posts[i].loveIts += 1;
-    this.postsService.savePosts();
+    this.postsService.incrementLove(i)
   }
 
   onDont(i) {
-    this.posts[i].loveIts -= 1;
-    this.postsService.savePosts();
+    this.postsService.decrementLove(i)
   }
 
   getColor(i) {

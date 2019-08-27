@@ -9,6 +9,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li style="margin:15px;">{{ userName }}</li>
         <li routerLinkActive="active" *ngIf="!isAuth">
           <a routerLink="auth/signup">Créer un compte</a>
         </li>

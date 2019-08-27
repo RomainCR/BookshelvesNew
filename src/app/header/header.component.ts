@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth.service'
 export class HeaderComponent implements OnInit {
 
   isAuth: boolean;
-  userName: string;
+  userName: any;
 
   constructor(private authService: AuthService) { }
 

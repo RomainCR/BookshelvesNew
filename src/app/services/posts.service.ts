@@ -38,6 +38,18 @@ export class PostsService {
     this.emitPosts();
   }
 
+  incrementLove(i: number) {
+    this.posts[i].loveIts++;
+    this.savePosts();
+    this.emitPosts();
+  }
+
+  decrementLove(i: number) {
+    this.posts[i].loveIts--;
+    this.savePosts();
+    this.emitPosts();
+  }
+
   removePost(post: Post) {
     if (post.photo) {
       const storageRef = firebase.storage().refFromURL(post.photo);
