@@ -1,6 +1,19 @@
-<div class="list-group" *ngFor="let post of posts; let i = index">
-  <ul>
-    <li>{{ post.title }}</li>
-  </ul>
-  <button class="btn btn-primary" (click)="onDelete(i)">X</button>
+<div class="container-fluid">
+  <div
+    class="list-group col-lg-3 col-sm-6 col-xs-12 col-md-4 gutter"
+    style="border:solid rgb(104, 104, 104) 2px; border-radius:8px; padding:10px; background-color: rgb(207, 214, 214);"
+    *ngFor="let card of cards; let i = index"
+  >
+    <h4>
+      {{ card.name }}
+      <span style="float:right;">
+        <button class="btn" (click)="onDelete(i)">X</button>
+      </span>
+    </h4>
+    <img
+      [src]="card.imageUrl"
+      alt="{{ card.name }}"
+      style="margin:10px; max-height: 300px;"
+    />
+  </div>
 </div>

@@ -8,8 +8,8 @@ import { HttpClient } from "@angular/common/http";
 })
 @Injectable()
 export class RestComponent implements OnInit {
-  url: string = "https://jsonplaceholder.typicode.com/posts";
-  posts: {};
+  url: string = "https://api.pokemontcg.io/v1/cards";
+  cards: any;
 
   constructor(private http: HttpClient) {}
 
@@ -19,14 +19,14 @@ export class RestComponent implements OnInit {
 
   getData() {
     this.http.get(this.url).subscribe(res => {
-      this.posts = res;
-      console.log(typeof res, 'res');   
+      this.cards = res.cards;
+      console.log(res.cards[0], 'res');   
     });
   }
 
-  // onDelete(i) {
-  //   this.posts = this.posts.filter(post => i === i);
-  //   console.log(this.posts); 
-  // }
+  onDelete(i) {
+    console.log(this.cards);
+    return this.cards.splice(i, 1);
+  }
 
 }
